@@ -1,0 +1,1 @@
+from .reports_routes import flask_app_blueprint as reports_routes

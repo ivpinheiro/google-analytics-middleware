@@ -1,0 +1,212 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Google Analytics Middleware",
+        "version": "1.0.0"
+    },
+    "tags": [
+        {
+            "name": "Reports from Google Analytics 4",
+            "description": "Endpoints returns data from Google Analytics 4"
+        },
+        {
+            "name": "Reports from Google Universal Analytics",
+            "description": "Endpoints returns data from Universal Analytics"
+        }
+    ],
+    "paths": {
+        "/ga4/reports": {
+            "post": {
+                "tags": [
+                    "Reports from Google Analytics 4"
+                ],
+                "description": "Returns the requested Google Analytics 4 report data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "access data",
+                        "in": "body",
+                        "description": "JSON data for the API",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GA4reports"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "500": {
+                        "description": "Internal server issues"
+                    },
+                    "400": {
+                        "description": "Server was unable to process the request"
+                    }
+                }
+            }
+        },
+        "/ua/reports": {
+            "post": {
+                "tags": [
+                    "Reports from Google Universal Analytics"
+                ],
+                "description": "Returns the requested Google Universal Analytics report data",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "access data",
+                        "in": "body",
+                        "description": "JSON data for the API",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UAreports"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "500": {
+                        "description": "Internal server issues"
+                    },
+                    "400": {
+                        "description": "Server was unable to process the request"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "UAreports": {
+            "type": "object",
+            "properties": {
+                "dataReports": {
+                    "type": "object",
+                    "properties": {
+                        "property_id": {
+                            "type": "string",
+                            "default": "141576803"
+                        },
+                        "dimensions": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "default": [
+                                    {
+                                        "name": "ga:campaign"
+                                    },
+                                    {
+                                        "name": "ga:adContent"
+                                    },
+                                    {
+                                        "name": "ga:medium"
+                                    },
+                                    {
+                                        "name": "ga:source"
+                                    },
+                                    {
+                                        "name": "ga:city"
+                                    },
+                                    {
+                                        "name": "ga:country"
+                                    },
+                                    {
+                                        "name": "ga:region"
+                                    },
+                                    {
+                                        "name": "ga:deviceCategory"
+                                    },
+                                    {
+                                        "name": "ga:date"
+                                    }
+                                ]
+                            }
+                        },
+                        "metrics": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "expression": {
+                                        "type": "string"
+                                    }
+                                },
+                                "default": [
+                                    {
+                                        "expression": "ga:sessions"
+                                    },
+                                    {
+                                        "expression": "ga:sessionDuration"
+                                    },
+                                    {
+                                        "expression": "ga:bounces"
+                                    }
+                                ]
+                            }
+                        },
+                        "start_date": {
+                            "type": "string",
+                            "default": "2020-01-01"
+                        },
+                        "end_date": {
+                            "type": "string",
+                            "default": "2020-01-31"
+                        }
+                    }
+                }
+            }
+        },
+        "GA4reports": {
+            "type": "object",
+            "properties": {
+                "dataReports": {
+                    "type": "object",
+                    "properties": {
+                        "property_id": {
+                            "type": "string",
+                            "default": "372337497"
+                        },
+                        "dimensions": {
+                            "type": "array",
+                            "default": [
+                                "sessionSource",
+                                "sessionSourceMedium",
+                                "city",
+                                "date"
+                            ]
+                        },
+                        "metrics": {
+                            "type": "array",
+                            "default": [
+                                "activeUsers",
+                                "conversions"
+                            ]
+                        },
+                        "start_date": {
+                            "type": "string",
+                            "default": "2023-11-01"
+                        },
+                        "end_date": {
+                            "type": "string",
+                            "default": "2023-11-30"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+# Arquivos de byte compilados Python
+*.pyc
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+
+# Arquivos de log
+*.log
+
+# Arquivos de backup
+*~
+
+# Arquivos de configuração específicos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de cache ou dados temporários
+*.sqlite
+.cache/
+
+# Envs
+/*key.json
+/*key-new.json
+.env
+consulta.json
